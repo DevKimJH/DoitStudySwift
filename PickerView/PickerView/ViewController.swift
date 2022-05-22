@@ -10,6 +10,7 @@ import UIKit
 class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     let MAX_ARRAY_NUM = 10
     let PICKER_VIEW_COLUMN = 1
+    var imageArray = [UIImage?]()
     var imageFileName = ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg",
                          "6.jpg", "7.jpg", "8.jpg", "9.jpg", "10.jpg"]
     
@@ -20,8 +21,15 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        for i in 0 ..< MAX_ARRAY_NUM {
+            let image = UIImage(named: imageFileName[i])
+            imageArray.append(image)
+        }
+        
+        lblImageFileName.text = imageFileName[0]
+        imageView.image = imageArray[0]
     }
-    
     
     // returns the number of 'columns' to display
     func numberOfComponents(in pickverView: UIPickerView) -> Int{
@@ -44,7 +52,8 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
          row 값에 해당하는 문자열을 가지고 온다
          */
         lblImageFileName.text = imageFileName[row]
+        imageView.image = imageArray[row]
      }
-
+    
 }
 
